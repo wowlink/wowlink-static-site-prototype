@@ -1,24 +1,34 @@
 import logo from './logo.svg';
 import './App.css';
+import { Link, useLocation, BrowserRouter as Router } from "react-router-dom";
 
-function App() {
+// http://localhost:3000&wow=github
+// window.location.href = "https://github.com";
+
+function useQuery() {
+  return new URLSearchParams(useLocation().search);
+}
+
+function Home() {
+  const query = useQuery();
+  console.log(query.get("wow"));
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          I am too lazy to change the default home page ¯\_(ツ)_/¯
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
       </header>
     </div>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <Home />
+    </Router>
   );
 }
 
